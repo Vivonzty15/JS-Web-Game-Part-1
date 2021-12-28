@@ -7,23 +7,39 @@ function newImage(image, left, bottom, top, width) {
     img.style.bottom = bottom
     img.style.top = top
     img.style.width = width
+    return img
 }
 
 function newItem(image, left, bottom) {
-    let item = document.createElement('img')
-    document.body.append(item)
-    item.src = 'assets/' + image
-    item.style.position = 'fixed'
-    item.style.left = left
-    item.style.bottom = bottom
-
+    let item = newImage(image, left, bottom)
 
     item.addEventListener('dblclick', function(){
         item.remove()
+        let inventoryItem = document.createElement('img')
+        inventoryItem.src = 'assets/' + image
+        inventory.append(inventoryItem)
     })
 }
 
-    //adding immages with arguments
+let inventory = document.createElement('div')
+
+function newInventory(){
+    inventory.style.position = 'fixed'
+    inventory.style.bottom = '0px'
+    inventory.style.left = '0px'
+    inventory.style.width = '100%'
+    inventory.style.height = '100px'
+    inventory.style.display = 'flex'
+    inventory.style.flexDirection = 'row'
+    inventory.style.alignItems = 'center'
+    inventory.style.justifyContent = 'space-evenly'
+    inventory.style.border = '2px solid black'
+    inventory.style.backgroundColor = 'brown'
+    document.body.append(inventory)
+}
+    
+
+    //adding images with arguments
 
 newImage('sky.png', '0px', '430px','', '100%')
 
@@ -51,9 +67,11 @@ newImage('pillar.png', '200px', '-65px')
 
 newImage('boulder.png', '700px', '300px')
 
-//adding items with click event
+    //adding items with click event
 newItem('sword.png', '400px', '200px')
 
 newItem('sheild.png', '300px', '300px')
 
 newItem('staff.png', '500px', '100px')
+
+newInventory()
