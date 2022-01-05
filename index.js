@@ -1,77 +1,46 @@
-function newImage(image, left, bottom, top, width) {
-    let img = document.createElement('img')
-    document.body.append(img)
-    img.src = 'assets/' + image
-    img.style.position = 'fixed'
-    img.style.left = left
-    img.style.bottom = bottom
-    img.style.top = top
-    img.style.width = width
-    return img
-}
-
-function newItem(image, left, bottom) {
-    let item = newImage(image, left, bottom)
-
-    item.addEventListener('dblclick', function(){
-        item.remove()
-        let inventoryItem = document.createElement('img')
-        inventoryItem.src = 'assets/' + image
-        inventory.append(inventoryItem)
-    })
-}
-
-let inventory = document.createElement('div')
-
-function newInventory(){
-    inventory.style.position = 'fixed'
-    inventory.style.bottom = '0px'
-    inventory.style.left = '0px'
-    inventory.style.width = '100%'
-    inventory.style.height = '100px'
-    inventory.style.display = 'flex'
-    inventory.style.flexDirection = 'row'
-    inventory.style.alignItems = 'center'
-    inventory.style.justifyContent = 'space-evenly'
-    inventory.style.border = '2px solid black'
-    inventory.style.backgroundColor = 'brown'
-    document.body.append(inventory)
-}
-    
-
-    //adding images with arguments
-
 newImage('sky.png', '0px', '430px','', '100%')
-
 newImage('grass.png', '0px', '0px', '190px', '100%')
 
-newImage('crate.png', '200px', '200px')
-newImage('well.png', '600px', '350px')
-newImage('green-character.gif', '300px', '200px')
-newImage('green-character.gif', '1100px', '280px')
-newImage('red-character.gif', '600px', '200px')
-newImage('green-character.gif', '300px', '50px')
-newImage('green-character.gif', '100px', '300px')
+const inventory = newInventory()
 
-newImage('tree.png', '200px', '400px')
-newImage('tree.png', '1000px', '400px')
-newImage('tree.png', '500px', '200px')
-newImage('pine-tree.png', '400px', '400px')
-newImage('pine-tree.png', '900px', '200px')
-newImage('tree.png', '100px', '50px')
+const character = newImage('green-character/static.gif')
 
-newImage('log.png', '700px', '0px')
+function handleDirectionChange(direction) {
+    if (direction === 'null') {
+        character.src = 'assets/green-character/static.gif'
+    }
+    if(direction === 'west'){
+        character.src = 'assets/green-character/west.gif'
+    }
+    if(direction === 'north'){
+        character.src = 'assets/green-character/north.gif'
+    }
+    if(direction === 'east'){
+        character.src = 'assets/green-character/east.gif'
+    }
+    if(direction === 'south'){
+        character.src = 'assets/green-character/south.gif'
+    }
+}
 
-newImage('pillar.png', '500px', '-65px')
-newImage('pillar.png', '200px', '-65px')
+move(character).withArrowKeys(300, 200, handleDirectionChange)   
 
-newImage('boulder.png', '700px', '300px')
+    //adding images with arguments
+move(newImage('boulder.png')).to("100", "250")
+move(newImage('crate.png')).to("200", "200")
+move(newImage('well.png')).to('600', '350')
+move(newImage('tree.png')).to('200', '400')
+move(newImage('tree.png')).to('1000', '400')
+move(newImage('tree.png')).to('500', '200')
+move(newImage('pine-tree.png')).to('400', '400')
+move(newImage('pine-tree.png')).to('900', '200')
+move(newImage('tree.png')).to('100', '50')
+move(newImage('log.png')).to('700', '0')
+move(newImage('pillar.png')).to('500', '-65')
+move(newImage('pillar.png')).to('200', '-65')
+move(newImage('boulder.png')).to('700', '300')
 
     //adding items with click event
-newItem('sword.png', '400px', '200px')
-
-newItem('sheild.png', '300px', '300px')
-
-newItem('staff.png', '500px', '100px')
-
-newInventory()
+    move(newItem('sword.png')).to('400', '200')
+    move(newItem('sheild.png')).to('300', '300')
+    move(newItem('staff.png')).to('500', '100')
