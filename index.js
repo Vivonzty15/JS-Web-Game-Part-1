@@ -7,32 +7,24 @@ const pc = newPlayableCharacter(100, 110)
 
 const npc = newNonPlayableCharacter(50, 300) 
 
-// asychronous code
-    npc.walkNorth(500, () => {
-        npc.walkEast(500, () => {
-            npc.walkSouth(200, () => {
-                npc.walkEast(1100, () => {
-                    npc.walkSouth(750, () => {
-                        npc.walkEast(1600, () => {
-                            npc.walkNorth(900, () => {
-                                npc.walkEast(500, () => {
-                                    npc.walkSouth(100, () => {
-                                        npc.walkEast(1200, () => {
-                                            npc.walkSouth(800, () => {
-                                                npc.walkWest(3500, () => {
-            
-                                                })
-                                            })
-                                        })
-                                    })
-                                })
-                            })
-                        })
-                    })
-                })
-            })
-        })
-    })
+// asychronous code with promise
+async function moveNPC(){
+    await npc.walkNorth(500)
+    await npc.walkEast(500)
+    await npc.walkSouth(200)
+    await npc.walkEast(1100)
+    await npc.walkSouth(750)
+    await npc.walkEast(1600)
+    await npc.walkNorth(900)
+    await npc.walkEast(500)
+    await npc.walkSouth(100)
+    await npc.walkEast(1200)
+    await npc.walkSouth(800)
+    await npc.walkWest(4900)
+    await npc.walkNorth(450)
+}
+moveNPC()
+
 
     //adding images with arguments
 move(newImage('boulder.png')).to("100", "250")
