@@ -18,7 +18,7 @@ function move(image) {
             if(direction === 'west'){
                 x-=1
                 if (x === -57) {
-                    x+=1423
+                    x+=1423 // returns to other side of page
                 }
             }
             if(direction === 'north'){
@@ -46,7 +46,7 @@ function move(image) {
         setInterval(moveCharacter, 1)
 
         document.addEventListener('keydown', function(e){
-            if(e.repeat) return;
+            if(e.repeat) return; // not sure what this does
         
             if(e.key === 'ArrowLeft'){
                 direction = 'west'
@@ -60,16 +60,14 @@ function move(image) {
             if(e.key === 'ArrowDown'){
                 direction = 'south'
             }
-            if (callback === handleDirectionChange){
-                callback(direction)
-            }
+            
+            callback(direction)
+            
         })
         
-        document.addEventListener('keyup', function(){
+        document.addEventListener('keyup', function(e){
             direction = null
-            if (callback === handleDirectionChange){
-                callback(direction)
-            }
+            callback(direction) 
         })
     }
 
