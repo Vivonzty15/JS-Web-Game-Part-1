@@ -35,48 +35,34 @@ function newNonPlayableCharacter(x, y,) {
 
     setInterval(moveCharacter, 1)
 
-    function walkEast(time, callback) {
+    async function walkEast(time) {
         direction = 'east'
         element.src = `./assets/red-character/east.gif`
-        setTimeout(() => { //asychronous code
-            stop()
-            if(callback) {
-                callback()
-            }
-        }, time)
+        await sleep(time)
+        stop()
     }
 
-    function walkNorth(time, callback) {
+    async function walkNorth(time) {
         direction = 'north'
         element.src = `./assets/red-character/north.gif`
-        setTimeout(() => {
-            stop()
-            if(callback) {
-                callback()
-            }
-        }, time)
+        await sleep(time)
+        stop()
+       
     }
 
-    function walkWest(time, callback) {
+    async function walkWest(time) {
         direction = 'west'
         element.src = `./assets/red-character/west.gif`
-        setTimeout(() => {
-            stop()
-            if(callback) {
-                callback()
-            }
-        }, time)
+        await sleep(time)
+        stop()
     }
 
-    function walkSouth(time, callback) {
+    async function walkSouth(time) {
         direction = 'south'
         element.src = `./assets/red-character/south.gif`
-        setTimeout(() => {
-            stop()
-            if(callback) {
-                callback()
-            }
-        }, time)
+        await sleep(time)
+        stop()
+        
     }
 
     function stop() {
@@ -92,4 +78,10 @@ function newNonPlayableCharacter(x, y,) {
         walkSouth: walkSouth,
         stop: stop
     }
+}
+
+function sleep(time){
+    return new Promise(resolve => {
+        setTimeout(resolve, time)
+    })  
 }
